@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR File Upload"
+  short_description: "Attach evidence files to GitHub PRs"
+  default_prompt: "Use $file-upload to attach the prepared evidence files to the current GitHub pull request."
