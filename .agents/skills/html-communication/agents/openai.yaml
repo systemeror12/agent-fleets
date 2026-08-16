@@ -1,0 +1,4 @@
+interface:
+  display_name: "HTML Communication"
+  short_description: "Create standalone work writeups in HTML"
+  default_prompt: "Use $html-communication to create and publish a standalone Postplan HTML writeup for this work."
