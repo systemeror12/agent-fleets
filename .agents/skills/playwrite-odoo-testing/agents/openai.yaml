@@ -1,0 +1,4 @@
+interface:
+  display_name: "Playwright Odoo Testing"
+  short_description: "Build visible, Odoo-aware Playwright tests"
+  default_prompt: "Use $playwrite-odoo-testing to build and validate a visible, developer-readable Odoo Playwright test."
