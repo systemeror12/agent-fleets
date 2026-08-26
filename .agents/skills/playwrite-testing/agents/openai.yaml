@@ -1,0 +1,4 @@
+interface:
+  display_name: "Playwright Testing"
+  short_description: "Build visible, user-focused Playwright tests"
+  default_prompt: "Use $playwrite-testing to build and validate a visible, user-focused Playwright test."
