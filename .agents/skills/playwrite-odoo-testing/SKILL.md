@@ -21,18 +21,17 @@ The work has two parts: a user-visible Odoo journey and a report another develop
 
    Completion: the spec reads as a business workflow, and repeated Odoo DOM work has one implementation.
 
-4. Add evidence while writing. Use run-scoped names for created records. Wait on visible Odoo state or the loading indicator. Use `test.step` or the repository's child-step helper. Give each meaningful step a stable ID and a short passed or failed message. Preserve the configured trace, video, screenshot, and HTML report settings.
+4. Add evidence while writing. Use run-scoped names for created records. Wait on visible Odoo state or the loading indicator. Use `test.step` or the repository's child-step helper. Give each meaningful step a stable ID and a short passed or failed message. After the final visible assertion in each meaningful step, pause 1.5–2 seconds so headed runs are watchable; keep state waits in addition to this pacing and put the pause in the shared helper, such as `runChildSteps`, instead of repeating it in each spec. Preserve the configured trace, video, screenshot, and HTML report settings.
 
    Completion: a failure identifies the first broken step, its expected result, and any available artifact.
 
-5. Run visibly. Find the repository's configured UI command in its local instructions, package scripts, and Playwright config. Prefer the package script because it may load environment and authentication setup. If no UI script exists, use Playwright's UI mode directly:
+5. Run visibly. From the `playwright/` directory, run the affected test with the headed browser on display `:1`:
 
    ```sh
-   npm run <ui-test-script> -- <affected-spec>.spec.ts
-   npx playwright test --ui <affected-spec>.spec.ts
+   DISPLAY=:1 npx playwright test --headed <test_name>
    ```
 
-   A headless-only run is a CI check. It is not the developer validation reported by this skill. If the visible run cannot start because of a missing server, credential, database, or browser, report `BLOCKED` or `UNRUN` and name the missing precondition.
+   Replace `<test_name>` with the spec path or Playwright test-name filter. This headed command is the developer validation because it shows the actual running web browser. A headless run is an optional quick check and does not replace visible validation. If the visible run cannot start because of a missing server, credential, database, or browser, report `BLOCKED` or `UNRUN` and name the missing precondition.
 
    Completion: the developer can inspect the visible run, or the report clearly states why it did not run.
 
@@ -48,7 +47,7 @@ The work has two parts: a user-visible Odoo journey and a report another develop
    Cause/next action: <first failure, missing precondition, or follow-up>
    ```
 
-   `PASS` requires the visible command and scope. `FAIL` names the first broken step and artifact. `BLOCKED` and `UNRUN` name the missing precondition.
+   `PASS` requires the exact headed command with `DISPLAY=:1` and `--headed`, plus scope. `FAIL` names the first broken step and artifact. `BLOCKED` and `UNRUN` name the missing precondition.
 
 ## Good example
 
@@ -97,11 +96,11 @@ test("ODOO-001 creates a job position", async ({ page }) => {
 });
 ```
 
-Run it with the visible UI command and report the step messages plus any trace, video, screenshot, or HTML report.
+Run it with `DISPLAY=:1 npx playwright test --headed <test_name>` from `playwright/` and report the step messages plus any trace, video, screenshot, or HTML report. The shared `runChildSteps` helper supplies the 1.5–2 second pause after each step's final visible assertion.
 
 ## Bad example
 
-This uses incidental DOM order, skips a visible assertion, and runs headless by default:
+This uses incidental DOM order and skips a visible assertion:
 
 ```ts
 test("creates a job position", async ({ page }) => {
@@ -112,7 +111,7 @@ test("creates a job position", async ({ page }) => {
 ```
 
 ```sh
-npx playwright test playwright/job-position.spec.ts
+DISPLAY=:1 npx playwright test --headed job-position.spec.ts
 ```
 
 It gives the developer no stable Odoo boundary, step result, or inspectable browser run.
