@@ -26,10 +26,22 @@ Create a standalone HTML work writeup and publish it through Postplan. Treat eve
 
 - Use semantic HTML and logical landmarks. Keep the document useful when styles do not load.
 - Use inline CSS. Keep the layout fluid and responsive. Do not use fixed-width page or content layouts.
-- Use true black (`#000`) for primary text. Use dark gray only for secondary surfaces or accents.
 - Use inline SVG for diagrams and icons when needed.
 - Use only `https://` or `data:` image sources.
 - Keep the file self-contained and independent of frameworks, build steps, routes, components, and application assets.
+
+## Visual style
+
+Apply this dark theme to every writeup:
+
+- Canvas `#000`, primary text `#fff`, body text `#b3b3b3`, captions and muted labels `#828282`.
+- One accent: orange `#ff8a3d` for KPI numbers and emphasized chart elements. Keep everything else gray.
+- Headings bold white with no borders or underlines.
+- Tables: borders `#262626`, header background `#161616`, zebra rows `#0d0d0d`, cell text `#d9d9d9`.
+- Code blocks: background `#1a1a1a`, text `#e6e6e6`.
+- Charts: baseline bars `#3a3a3a`, emphasized bars `#ff8a3d`, white value labels above bars, axis labels `#666666`.
+- KPI rows: huge bold orange numbers, about 3.4rem desktop and 2.3rem mobile, with small gray captions and no card or box chrome. Dim secondary KPIs to muted gray. Keep rows to about 4 tiles.
+- Set Readex Pro, weights 300-700, as the typeface. Fetch `https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300..700` with a Chrome user agent, take the latin woff2 URL, base64 it, and embed it as a `data:` `@font-face`. Fall back to the system stack.
 
 ## Script and link specification
 
