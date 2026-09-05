@@ -42,6 +42,8 @@ Use this exact Markdown structure for every PR description:
 
 Open a real PR rather than a draft so review bots run if the repository has AI reviewers.
 
+After opening the PR, watch its CI checks until they finish. Filing is complete only when every CI check is green. If a check fails, inspect it, make and push any in-scope fix, then watch the new run. Report an externally blocked check as a blocker and the PR as incomplete.
+
 ## Optional UI evidence
 
 After the PR exists, invoke `$file-upload` only when every gate passes:
