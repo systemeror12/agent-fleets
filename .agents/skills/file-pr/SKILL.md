@@ -22,27 +22,29 @@ Open the description with a simple explanation of the problem based on the user'
 Use this exact Markdown structure for every PR description:
 
 ```markdown
-## Issue report
+## What Changed
 
-[Issue description]
+[What Changed Description]
 
-## Solution
+## Why
 
-[Solution description]
+[Exmplain Why]
 
-## Related work
+## Checklist
 
-[Related issue or work]
+[Checklists]
 
-## Validation
+## Related Issues
 
-[Validation description]
+[Issue Description]
 ```
 
 
 Open a real PR rather than a draft so review bots run if the repository has AI reviewers.
 
 After opening the PR, watch its CI checks until they finish. Filing is complete only when every CI check is green. If a check fails, inspect it, make and push any in-scope fix, then watch the new run. Report an externally blocked check as a blocker and the PR as incomplete.
+
+Omit Related Issue Section if there's no detected Issue Tracker.
 
 ## Optional UI evidence
 
