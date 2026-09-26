@@ -28,7 +28,7 @@ Use this exact Markdown structure for every PR description:
 
 ## Why
 
-[Exmplain Why]
+[Explain Why]
 
 ## Checklist
 
